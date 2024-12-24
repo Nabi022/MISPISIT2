@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Домашняя страница</title>
+    <link rel="stylesheet" href="{% static 'home/css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Добро пожаловать на мою домашнюю страницу!</h1>
+        <a href="{% url 'create_record' %}" class="btn">Создать новую запись</a>
+        <ul class="record-list">
+            {% for record in records %}
+                <li class="record-item">
+                    <strong>{{ record.name }}</strong>: {{ record.description }}
+                    <a href="{% url 'edit_record' record.pk %}" class="btn">Редактировать</a>
+                    <a href="{% url 'delete_record' record.pk %}" class="btn btn-danger">Удалить</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
